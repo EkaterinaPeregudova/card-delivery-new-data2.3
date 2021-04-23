@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
+
 public class CardDeliveryData {
     @BeforeEach
     void setup() {
@@ -32,6 +33,7 @@ public class CardDeliveryData {
         val firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         val daysToAddForSecondMeeting = 7;
         val secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
+
         // TODO: добавить логику теста в рамках которого будет выполнено планирование и перепланирование встречи.
         // Для заполнения полей формы можно использовать пользователя validUser и строки с датами в переменных
         // firstMeetingDate и secondMeetingDate. Можно также вызывать методы generateCity(locale),
