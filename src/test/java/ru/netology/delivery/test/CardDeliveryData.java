@@ -20,9 +20,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class CardDeliveryData {
+
     @BeforeEach
     void setup() {
         open("http://localhost:9999");
+
     }
 
     @Test
@@ -34,6 +36,28 @@ public class CardDeliveryData {
         val daysToAddForSecondMeeting = 7;
         val secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
 
+        $$("[type=text]").first().setValue(validUser.getCity());
+        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
+        $("[placeholder='Дата встречи']").setValue(secondMeetingDate);
+        $("[data-test-id=name] [type=text]").setValue(validUser.getName());
+        $("[name=phone]").setValue(validUser.getPhone());
+        $(".checkbox__box").click();
+        $("div.form-field>[type=button]").submit();
+        $(".notification__content").shouldBe(visible, Duration.ofSeconds(15)).shouldHave(exactText("Встреча успешно запланирована на " + firstMeetingDate));
+        closeWindow();
+
+
+        open("http://localhost:9999");
+        $$("[type=text]").first().setValue(validUser.getCity());
+        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
+        $("[placeholder='Дата встречи']").setValue(secondMeetingDate);
+        $("[data-test-id=name] [type=text]").setValue(validUser.getName());
+        $("[name=phone]").setValue(validUser.getPhone());
+        $(".checkbox__box").click();
+        $("div.form-field>[type=button]").submit();
+        $(withText("Необходимо")).shouldBe(visible, Duration.ofSeconds(15));
+        $(".notification__content>[type=button]").click();
+        $(".notification__content").shouldBe(visible, Duration.ofSeconds(15)).shouldHave(exactText("Встреча успешно запланирована на " + firstMeetingDate));
         // TODO: добавить логику теста в рамках которого будет выполнено планирование и перепланирование встречи.
         // Для заполнения полей формы можно использовать пользователя validUser и строки с датами в переменных
         // firstMeetingDate и secondMeetingDate. Можно также вызывать методы generateCity(locale),
