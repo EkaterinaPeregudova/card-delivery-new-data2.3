@@ -41,7 +41,6 @@ public class CardDeliveryData {
         // имени и номера телефона без создания пользователя в методе generateUser(String locale) в датагенераторе
     }
 
-    цветочки
 
 
 //        private LocalDate plusDays(int n) {

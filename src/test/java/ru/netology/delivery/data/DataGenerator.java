@@ -38,12 +38,12 @@ public class DataGenerator {
         return phone;
     }
 
-    public static class DeliveryRequest {
-        public DeliveryRequest() {
+    public static class Registration {
+        private Registration() {
         }
 
 
-        public static UserInfo clientInfo(String locale) {
+        public static UserInfo generateUser(String locale) {
             return new UserInfo (generateCity(),generateName(locale),generatePhone(locale));
 
         }
